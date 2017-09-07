@@ -1,0 +1,16 @@
+<h1>Listing of Product Categories</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.title %></td>
+      
+      <td><%= link_to 'Show', category_path(category) %></td>
+    </tr>
+  <% end %>
+  
+</table>
