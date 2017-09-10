@@ -1,0 +1,12 @@
+<div class="container">
+  <%= render 'shared/navigation' %>
+  
+  <% @products.each do |product| %>
+    <ul>
+      <li><%= product.summary %> |
+      <%= link_to 'View', category_product_path(product.category_id, product) %> </li>
+      <%= image_tag product.picture.url if product.picture? %>
+      <li><%= product.description %></li>
+    </ul>  
+  <% end %>
+</div>

@@ -1,2 +1,4 @@
 class Category < ApplicationRecord
-end
+  has_many :products
+  validates :title, presence: true, length: { minimum: 5 }
+end 
