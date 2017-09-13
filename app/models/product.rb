@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :category
+  belongs_to :vendor
+  
   mount_uploader :picture, PictureUploader
   validates :summary, presence: true
   validates :description, presence: true

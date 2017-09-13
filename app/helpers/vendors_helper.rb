@@ -1,2 +1,10 @@
 module VendorsHelper
+  
+  # Returns the Gravatar for the given vendor.
+  def gravatar_for(vendor)
+    gravatar_id = Digest::MD5::hexdigest(vendor.email.downcase)
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
+    image_tag(gravatar_url, alt: vendor.name, class: "gravatar")
+  end
+  
 end
