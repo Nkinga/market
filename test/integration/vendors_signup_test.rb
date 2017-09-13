@@ -16,7 +16,7 @@ class VendorsSignupTest < ActionDispatch::IntegrationTest
   
   test "valid signup information" do
     get signup_path
-    assert_difference 'Vendor.count, 1' do 
+    assert_difference 'Vendor.count', 1 do 
       post vendors_path, params: { vendor: { name: "Example Vendor",
                                              email: "vendor@valid.com",
                                              password: "password",
