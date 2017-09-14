@@ -12,10 +12,13 @@
         <td><%= category.title %></td>
         
         <td><%= link_to 'Show', category_path(category) %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Delete', category_path(category),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
+        
+        <% if logged_in? && current_vendor.admin? %>
+          <td><%= link_to 'Edit', edit_category_path(category) %></td>
+          <td><%= link_to 'Delete', category_path(category),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        <% end %>        
       </tr>
     <% end %>
     
