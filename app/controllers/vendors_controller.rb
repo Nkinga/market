@@ -1,4 +1,7 @@
 class VendorsController < ApplicationController
+  def index 
+    @vendors = Vendor.all
+  end
   
   def show
     @vendor = Vendor.find(params[:id])
@@ -17,6 +20,19 @@ class VendorsController < ApplicationController
     else
       render 'new'
     end
+  end
+  
+  def edit
+    @vendor = Vendor.find(params[:id])
+  end
+  
+  def update
+    if @vendor.update(vendor_params)
+      flash[:notice] = "Your account was successfully updated"
+      redirect_to @vendor
+    else
+      render 'edit'
+    end 
   end
   
   private

@@ -1,28 +1,28 @@
-<div class="container">
-  <h2>Add a product</h2>
-  <%= form_for([@category, @category.products.build]) do |f| %>
-    <%= render 'shared/error_messages', obj: @product %>
-    
-    <div class="form-group">
-      <%= f.label :summary %><br>
-      <%= f.text_field :summary, class: "form-control" %>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-    
-    <div class="form-group picture">
-      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', 
-                  class: "form-control" %>
-    </div>
-    
-    <div class="form-group">
-      <%= f.submit %>
-    </div>
-  <% end %>
-</div>
+<%= render 'shared/navigation' %>
+<h2>Add a product</h2>
+<%= form_for([@category, @category.products.build]) do |f| %>
+  <%= render 'shared/error_messages', obj: @product %>
+  
+  <div class="form-group">
+    <%= f.label :summary %><br>
+    <%= f.text_field :summary, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  
+  <div class="form-group picture">
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', 
+                class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 
 <script type="text/javascript">
   $('#product_picture').bind('change', function() {

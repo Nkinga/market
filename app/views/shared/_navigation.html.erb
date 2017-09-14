@@ -15,13 +15,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Vendors<span class="sr-only">(current)</span></a></li>
+        <li><%= link_to 'Vendors', vendors_path %></li>
         <li><%= link_to "Categories", categories_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% Category.all.each do |category| %>
-              <li><%= link_to "#{category.title} - Add new product", new_category_product_path(category.id) %></li>
+              <% if logged_in? %>
+                <li><%= link_to "#{category.title} - Add new product", new_category_product_path(category.id) %></li>
+              <% end %>
               <li><%= link_to "All #{category.title}", category_products_path(category.id) %></li>
               <li role="separator" class="divider"></li>
             <% end %>
@@ -35,17 +37,20 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">login</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seller's Name <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">log out</a></li>
-          </ul>
-        </li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_vendor.name %> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Profile', current_vendor %></li>
+              <li><%= link_to 'Edit your profile', edit_vendor_path(current_vendor) %></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Log out', logout_path, method: "delete" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Log in', login_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
