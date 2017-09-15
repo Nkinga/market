@@ -1,7 +1,17 @@
 <div class = "container">
   <%= render 'shared/navigation' %>
   <p>
-    <strong>Title:</strong>
-    <%= @category.title %>
+    <h2><%= @category.title %></h2>
   </p>
+ <div class="row"> 
+    <% @category.products.each do |product| %>
+      
+      <div class="col-md-3">
+        <h3><%= product.summary %></h3>
+      
+        <%= image_tag product.picture.url if product.picture? %>
+      </div>
+      
+    <% end %>
+  </div>
 </div>
