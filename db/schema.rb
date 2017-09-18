@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170914164926) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "password_digest"
-    t.boolean  "admin"
+    t.boolean  "admin",           default: false
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
     t.index ["email"], name: "index_vendors_on_email", unique: true

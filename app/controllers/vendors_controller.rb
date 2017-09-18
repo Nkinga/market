@@ -1,10 +1,13 @@
 class VendorsController < ApplicationController
+  before_action :setup, only: [:show, :edit]
+  before_action :admin_vendor, only: [:destroy]
+  
   def index 
-    @vendors = Vendor.all
+    @vendors = Vendor.paginate(page: params[:page], per_page: 5)
   end
   
   def show
-    @vendor = Vendor.find(params[:id])
+    
   end
   
   def new
@@ -15,7 +18,7 @@ class VendorsController < ApplicationController
     @vendor = Vendor.new(vendor_params)
     
     if @vendor.save
-      VendorMailer.account_activation(@vendor).deliver
+      VendorMailer.account_activation(@vendor).deliver_now
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
@@ -25,7 +28,7 @@ class VendorsController < ApplicationController
   end
   
   def edit
-    @vendor = Vendor.find(params[:id])
+    
   end
   
   def update
@@ -35,6 +38,12 @@ class VendorsController < ApplicationController
     else
       render 'edit'
     end 
+  end
+  
+  def destroy
+    Vendor.find(params[:id]).destroy
+    flash[:success] = "Vendor successfully deleted"
+    redirect_to vendors_url
   end
   
   def confirm_email
@@ -55,5 +64,13 @@ class VendorsController < ApplicationController
     def vendor_params
       params.require(:vendor).permit(:name, :email, :password, 
                                       :password_confirmation)
+    end
+    
+    def setup
+      @vendor = Vendor.find(params[:id])
+    end
+    
+    def admin_vendor
+      redirect_to(root_url) unless current_vendor.admin?
     end
 end

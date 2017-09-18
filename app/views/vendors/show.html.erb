@@ -1,8 +1,7 @@
-<%= render 'shared/navigation' %>
 <%= provide(title: @vendor.name) %>
 
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-4 col-md-offset-2">
     <section class="vendor_info">
       <h1>
         <%= gravatar_for @vendor %>
@@ -12,10 +11,7 @@
   </aside>
   
   <div class="col-md-4">
-    You have <%= @vendor.categories.count %> categories.
-  </div>
-  
-  <div class="col-md-4">
-    You have <%= @vendor.products.count %> products.
+    <p>You have <%= @vendor.categories.count %> categories.</p>
+    <p>You have <%= @vendor.products.count %> products.</p>
   </div>
 </div>

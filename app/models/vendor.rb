@@ -1,7 +1,7 @@
 class Vendor < ApplicationRecord
   before_create :confirmation_token
   
-  has_many :products
+  has_many :products, dependent: :destroy
   has_many :categories, :through => :products
   
   before_save { email.downcase! }

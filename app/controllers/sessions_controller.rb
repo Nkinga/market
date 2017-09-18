@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if vendor.email_confirmed
         # Log the vendor in and redirect to the vendor's show page.
         log_in vendor
-        redirect_back_or vendor
+        redirect_to vendor
       else
          flash.now[:error] = 'Please activate your account by following the 
         instructions in the account confirmation email you received to proceed'

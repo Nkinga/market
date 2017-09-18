@@ -2,7 +2,6 @@ require 'test_helper'
 
 class VendorMailerTest < ActionMailer::TestCase
   
-=begin  
   test "account_activation" do
     mail = VendorMailer.account_activation(@vendor)
     assert_equal "Account activation", mail.subject
@@ -10,5 +9,4 @@ class VendorMailerTest < ActionMailer::TestCase
     assert_equal ["from@example.com"], mail.from
     assert_match "Hi", mail.body.encoded
   end
-=end
 end

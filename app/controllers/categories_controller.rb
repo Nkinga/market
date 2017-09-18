@@ -1,10 +1,12 @@
 class CategoriesController < ApplicationController
+  before_action :setup, only: [:show, :edit, :update, :destroy]
+  
   def index
     @categories = Category.all  
   end
   
   def show
-    @category = Category.find(params[:id])
+    
   end
   
   def new
@@ -12,7 +14,7 @@ class CategoriesController < ApplicationController
   end
   
   def edit
-    @category = Category.find(params[:id])
+    
   end
   
   def create
@@ -26,7 +28,6 @@ class CategoriesController < ApplicationController
   end
   
   def update
-    @category = Category.find(params[:id])
     
     if @category.update(category_params)
       redirect_to @category
@@ -36,7 +37,6 @@ class CategoriesController < ApplicationController
   end
   
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     
     redirect_to categories_path
@@ -47,4 +47,9 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:title)
     end
+    
+    def setup
+      @category = Category.find(params[:id])
+    end
+    
 end

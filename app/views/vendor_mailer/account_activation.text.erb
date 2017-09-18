@@ -2,4 +2,4 @@ Hi <%= @vendor.name %>,
 
 Welcome to The Village Market App! Click the link below to activate your account.
 
-<%= confirm_email_vendor_url(@vendor.confirm_token, email: @vendor.email) %>
+<%= confirm_email_vendor_url(@vendor.confirm_token) %>

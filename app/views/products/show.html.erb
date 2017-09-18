@@ -1,6 +1,4 @@
-<div class="container">
-  <%= render 'shared/navigation' %>
-  
+
   <h2><%= @product.summary %></h2>
   
   <%= image_tag @product.picture.url if @product.picture? %>
@@ -9,6 +7,6 @@
     <strong>Description:</strong>
     <%= @product.description %>
   </p>
-</div>
+
   
  
